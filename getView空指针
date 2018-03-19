@@ -1,0 +1,41 @@
+
+Attempt to invoke virtual method 'int android.view.View.getImportantForAccessibility()'
+
+reason：ListView adapter.getView() method returned null;
+solutions:check the baseAdapter.getView() not 
+
+
+public class TestAdapter extends BaseAdapter{
+
+  TestAdapter(){
+    
+  }
+
+
+/**
+* handler array out of index and the data source is null;
+*/
+public Object getItem(int position){
+   if (position < 0 || mData == null || position >= mData.length) {
+            return null;
+    }
+    return mData.get(position);
+}
+
+@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    
+    ViewHolder vh = null;
+    if(convertView == null){
+        // inflater xml  and setTag();
+    }else {
+        vh = (ViewHolder)convertView.getTag();
+    }
+    Object obj = getItem(position);
+    if(obj ==null){
+      return convertView;
+    }
+    // todo set data to view
+}
+
+}
